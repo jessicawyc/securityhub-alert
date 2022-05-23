@@ -1,5 +1,5 @@
 # securityhub-alert
-##参数设置
+## 参数设置
 region为securityhub指定的聚合region
 ```
 region='us-west-2'
@@ -25,7 +25,7 @@ aws events put-targets --rule $rulename  --targets "Id"="1","Arn"=$snsarn --regi
 ```
 
 
-## 打开eventbridge rule,复制以下内容至
+## 打开eventbridge rule,复制以下内容至Target-Input transformer
 ```
 {
   "title": "$.detail.findings[0].Title",
