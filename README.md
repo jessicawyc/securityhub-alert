@@ -8,7 +8,7 @@ email='**@**.com'
 buttonname='send2email'
 actionid='send2email'
 ```
-## CLI
+## CLI 命令复制
 ```
 snsarn=$(aws sns create-topic   --name  $rulename  --region=$region  --output text --query 'TopicArn')
 aws sns subscribe --topic-arn $snsarn --protocol email --notification-endpoint  $email --region=$region
