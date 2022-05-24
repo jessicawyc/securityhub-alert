@@ -31,7 +31,7 @@ aws events put-targets --rule $rulename  --targets "Id"="1","Arn"=$snsarn --regi
 ```
 
 
-## 打开eventbridge rule,复制以下内容至Target-Input transformer
+## 打开eventbridge rule,复制以下内容至Target-Input transformer-config input transformer
 ### Input path
 ```
 {
