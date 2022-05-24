@@ -70,6 +70,6 @@ aws events put-rule \
 
 aws events put-targets --rule $rulename  --targets "Id"="1","Arn"=$snsarn --region=$region
 ```
-## 打开eventbridge rule,配置邮件格式与手动发送告警模式相同(如果不点操作这步,是收不到邮件的)
+## 打开eventbridge rule,配置邮件格式与手动发送告警模式相同(如果不操作这步,是收不到邮件的)
 
 
