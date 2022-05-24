@@ -83,3 +83,21 @@ aws events put-rule \
 aws events put-targets --rule $rulename  --targets "Id"="1","Arn"=$snsarn --region=$region
 ```
 ## 打开eventbridge rule,配置邮件格式与手动发送告警模式相同
+## 如果测试收不到邮件,可以在Event pattern里粘贴以下内容后重试
+```
+{
+  "source": ["aws.securityhub"],
+  "detail-type": ["Security Hub Findings - Imported"],
+  "detail": {
+    "findings": {
+      "RecordState": ["ACTIVE"],
+      "Severity": {
+        "Label": ["HIGH", "CRITICAL"]
+      },
+      "Workflow": {
+        "Status": ["NEW"]
+      }
+    }
+  }
+}
+```
