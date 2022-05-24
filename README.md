@@ -1,4 +1,4 @@
-# securityhub-alert配置指南
+# Securityhub-alert配置指南
 在所有ESS服务中只有Securityhub支持多regions聚合到一个region,在配置告警时,使用聚合后的region最为简便.
 # 手动发送告警模式
 -----------------------------------------------------------------------
