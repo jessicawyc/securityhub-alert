@@ -1,5 +1,6 @@
 # Securityhub-alert- email配置指南
-改进自原aws blog https://aws.amazon.com/cn/blogs/apn/how-to-enable-custom-actions-in-aws-security-hub/
+改进自原aws apn blog How to Enable Custom Actions in AWS Security Hub
+https://aws.amazon.com/cn/blogs/apn/how-to-enable-custom-actions-in-aws-security-hub/
 
 在所有ESS服务中只有Securityhub支持多regions聚合到一个region,在配置告警时,使用聚合后的region最为简便.
 # 手动发送告警模式
@@ -69,6 +70,6 @@ aws events put-rule \
 
 aws events put-targets --rule $rulename  --targets "Id"="1","Arn"=$snsarn --region=$region
 ```
-## 打开eventbridge rule,配置邮件格式与手动发送告警模式相同
-## 如果测试收不到邮件,可以在Event pattern里粘贴以下内容后重试
+## 打开eventbridge rule,配置邮件格式与手动发送告警模式相同(如果不点操作这步,是收不到邮件的)
+
 
