@@ -71,14 +71,14 @@ aws events put-rule \
 aws events put-targets --rule $rulename  --targets "Id"="1","Arn"=$snsarn --region=$region
 ```
 ## 打开eventbridge rule,配置邮件格式与手动发送告警模式相同(如果不操作这步,是收不到邮件的)
-## 只接收Guardduty,请将以下部分复制至Eventbridge-event pattern中
+## 只接收指定来源的finding,请将以下部分复制至Eventbridge-event pattern中后,将不需要的产品在ProductName后删除
 ```
 {
   "source": ["aws.securityhub"],
   "detail-type": ["Security Hub Findings - Imported"],
   "detail": {
     "findings": {
-      "ProductName": ["GuardDuty"]
+      "ProductName": ["GuardDuty","Macie"]
     }
   }
 }
