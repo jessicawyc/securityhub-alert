@@ -19,7 +19,7 @@ snsarn=$(aws sns create-topic   --name  $rulename  --region=$region  --output te
 aws sns subscribe --topic-arn $snsarn --protocol email --notification-endpoint  $email --region=$region
 buttonarn=$(aws securityhub create-action-target \
     --name $buttonname\
-    --description "send alert to email" \
+    --description $rulename \
     --id $actionid --region=$region  --output text --query 'ActionTargetArn')
 aws events put-rule \
 --name $rulename \
