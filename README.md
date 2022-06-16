@@ -2,7 +2,7 @@
 改进自原aws apn blog How to Enable Custom Actions in AWS Security Hub
 https://aws.amazon.com/cn/blogs/apn/how-to-enable-custom-actions-in-aws-security-hub/
 在所有ESS服务中只有Securityhub支持多regions聚合到一个region,在配置告警时,使用聚合后的region最为简便.
-# 手动发送告警模式
+# 1.手动发送告警模式
 -----------------------------------------------------------------------
 ## 参数设置
 region为securityhub指定的聚合region
@@ -49,7 +49,7 @@ aws events put-targets --rule $rulename  --targets "Id"="1","Arn"=$snsarn --regi
 "内容为:<Description>"
 "请处理,谢谢!"
 ```
-# 自动发送告警模式
+# 2.自动发送告警模式
 测试方法为将一条finidng状态改为NEW即会收到邮件
 -----------------------------------------------------------------------
 ## 参数设置
@@ -70,7 +70,28 @@ aws events put-rule \
 aws events put-targets --rule $rulename  --targets "Id"="1","Arn"=$snsarn --region=$region
 ```
 ## 打开eventbridge rule,配置邮件格式与手动发送告警模式相同(如果不操作这步,是收不到邮件的)
-## 只接收指定来源的finding,请将以下部分复制至Eventbridge-event pattern中后,将不需要的产品在ProductName后删除
+### Input path
+```
+{
+  "title": "$.detail.findings[0].Title",
+  "Description": "$.detail.findings[0].Description",
+  "account":"$.account",
+  "region":"$.region"
+  
+}
+```
+### Template
+
+```
+"安全团队, there is an alert title : <title> in region:<region>"
+"in account number:<account>"
+"内容为:<Description>"
+"请处理,谢谢!"
+```
+
+## 3.其它需求
+只接收指定来源的finding,请将以下部分复制至Eventbridge-event pattern中后,将不需要的产品在ProductName后删除
+## 3只接收指定来源的finding,请将以下部分复制至Eventbridge-event pattern中后,将不需要的产品在ProductName后删除
 ```
 {
   "source": ["aws.securityhub"],
