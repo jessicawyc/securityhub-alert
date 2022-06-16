@@ -90,15 +90,14 @@ aws events put-targets --rule $rulename  --targets "Id"="1","Arn"=$snsarn --regi
 ```
 
 ## 3.其它需求
-只接收指定来源的finding,请将以下部分复制至Eventbridge-event pattern中后,将不需要的产品在ProductName后删除
-## 3只接收指定来源的finding,请将以下部分复制至Eventbridge-event pattern中后,将不需要的产品在ProductName后删除
+只接收指定来源的finding,请将以下部分复制至Eventbridge-event pattern中后,将不需要的产品在ProductName那一行删除
 ```
 {
   "source": ["aws.securityhub"],
   "detail-type": ["Security Hub Findings - Imported"],
   "detail": {
     "findings": {
-      "ProductName": ["GuardDuty","Macie"],
+      "ProductName": ["GuardDuty","Macie","Inspector"],
       "RecordState": ["ACTIVE"],
       "Severity": {
         "Label": ["HIGH", "CRITICAL"]
